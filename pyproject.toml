@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rfxtrx-mqtt"
-version = "0.0.0"  # Placeholder, will be replaced dynamically
 description = "A Python package for processing RFXtrx data with MQTT support and automation integration."
 readme = "README.md"
 authors = [{ name = "Fredrik Blix", email = "fredrik.blix@gmail.com" }]
@@ -25,7 +24,6 @@ rfx-dump = "rfxtrx.rfx_dump:main"
 rfx-mqtt = "rfxtrx.rfx_mqtt:main"
 rfx-mqtt-pub = "rfxtrx.rfx_mqtt_pub:main"
 rfx-mqtt-sub = "rfxtrx.rfx_mqtt_sub:main"
-
 
 [tool.setuptools_scm]
 write_to = "rfxtrx/_version.py"
