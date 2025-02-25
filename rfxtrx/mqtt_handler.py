@@ -43,6 +43,8 @@ class MQTTHandler:
         Internal MQTT message handler.
         """
         try:
+            unused_client = client
+            unused_userdata = userdata
             data = json.loads(msg.payload.decode())
             print(f"📥 MQTT Received: {msg.topic} -> {data}")
 

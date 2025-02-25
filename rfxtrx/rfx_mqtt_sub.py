@@ -3,6 +3,8 @@ import argparse
 import paho.mqtt.client as mqtt
 
 def on_message(client, userdata, msg):
+    unused_client = client
+    unused_userdata = userdata
     print(f"📥 Received message on {msg.topic}: {msg.payload.decode()}")
 
 def main():

@@ -6,7 +6,6 @@ disable=
     too-many-arguments,
     too-many-positional-arguments,
     broad-exception-caught,
-    unused-argument,
     wrong-import-order,
     unused-import,
     duplicate-code
