@@ -23,7 +23,7 @@ class MQTTHandler:
         self.topic_prefix = topic_prefix
         self.on_message_callback = on_message_callback
 
-        self.client = mqtt.Client()
+        self.client = mqtt.Client(protocol=mqtt.MQTTv5)
 
         if self.username and self.password:
             self.client.username_pw_set(self.username, self.password)
@@ -43,8 +43,6 @@ class MQTTHandler:
         Internal MQTT message handler.
         """
         try:
-            unused_client = client
-            unused_userdata = userdata
             data = json.loads(msg.payload.decode())
             print(f"📥 MQTT Received: {msg.topic} -> {data}")
 
