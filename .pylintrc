@@ -7,5 +7,4 @@ disable=
     too-many-positional-arguments,
     broad-exception-caught,
     wrong-import-order,
-    unused-import,
     duplicate-code

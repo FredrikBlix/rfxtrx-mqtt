@@ -1,5 +1,4 @@
 import serial
-import json
 import time
 import binascii
 
