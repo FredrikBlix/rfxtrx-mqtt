@@ -27,4 +27,5 @@ rfx-mqtt-pub = "rfxtrx.rfx_mqtt_pub:main"
 rfx-mqtt-sub = "rfxtrx.rfx_mqtt_sub:main"
 
 [tool.setuptools_scm]
-write_to = "rfxtrx/_version.py"
+version_scheme = "no-guess-dev"
+local_scheme = "no-local-version"
