@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rfxtrx-mqtt"
+dynamic = ["version"]
 description = "A Python package for processing RFXtrx data with MQTT support and automation integration."
 readme = "README.md"
 authors = [{ name = "Fredrik Blix", email = "fredrik.blix@gmail.com" }]
