@@ -51,7 +51,7 @@ def main():
         readsize=args.readsize,
         callback=mqtt_callback
     )
-    
+
     print(f"🔄 RFXtrx to MQTT bridge started on {args.device}, publishing to {args.mqtt_topic}/<packet_type>")
     rfxtrx.start()
 

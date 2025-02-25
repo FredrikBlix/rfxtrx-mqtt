@@ -32,6 +32,9 @@ LIGHTING1_COMMANDS = {
 }
 
 class RFXtrx:
+    """
+    A class to interface with the RFXtrx device for reading and parsing data.
+    """
     def __init__(self, device="/dev/ttyUSB0", baudrate=38400, timeout=1, readsize=16, callback=None):
         """
         Initialize the RFXtrx class.

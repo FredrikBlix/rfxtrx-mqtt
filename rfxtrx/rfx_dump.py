@@ -15,9 +15,9 @@ def main():
     parser.add_argument("-b", "--baudrate", type=int, default=38400, help="Baud rate (default: 38400)")
     parser.add_argument("-t", "--timeout", type=int, default=1, help="Timeout in seconds (default: 1)")
     parser.add_argument("-r", "--readsize", type=int, default=16, help="Number of bytes to read at a time (default: 16)")
-    
+
     args = parser.parse_args()
-    
+
     # Start the RFXtrx reader with print callback
     rfxtrx = RFXtrx(device=args.device, baudrate=args.baudrate, timeout=args.timeout, readsize=args.readsize, callback=print_callback)
     rfxtrx.start()
