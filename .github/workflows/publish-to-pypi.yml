@@ -2,7 +2,7 @@ name: Publish to PyPI
 
 on:
     release:
-        types: [created]
+        types: [published] # Trigger when the release is published, not just created.
 
 permissions:
     id-token: write # Required for trusted publishing
@@ -29,4 +29,4 @@ jobs:
               uses: pypa/gh-action-pypi-publish@release/v1
               with:
                   user: __token__
-                  password: ${{ secrets.PYPI_API_TOKEN }}
+                  password: ${{ secrets.PYPI_API_TOKEN }} # This uses the token stored in GitHub Secrets
