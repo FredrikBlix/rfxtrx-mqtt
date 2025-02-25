@@ -1,32 +1,55 @@
-name: Publish to PyPI
+name: Upload Python Package
 
 on:
-    release:
-        types: [published] # Trigger when the release is published, not just created.
+  release:
+    types: [published]  # Trigger when the release is published
 
 permissions:
-    id-token: write # Required for trusted publishing
+  contents: read
 
 jobs:
-    publish:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  release-build:
+    runs-on: ubuntu-latest
 
-            - name: Set up Python
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.x"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Install dependencies
-              run: pip install build
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
-            - name: Build package
-              run: python -m build
+      - name: Build release distributions
+        run: |
+          python -m pip install build
+          python -m build
 
-            - name: Publish to PyPI
-              uses: pypa/gh-action-pypi-publish@release/v1
-              with:
-                  user: __token__
-                  password: ${{ secrets.PYPI_API_TOKEN }} # This uses the token stored in GitHub Secrets
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+  pypi-publish:
+    runs-on: ubuntu-latest
+    needs: release-build  # Ensures this job runs after release-build
+    permissions:
+      id-token: write  # Required for trusted publishing
+
+    environment:
+      name: pypi  # You can specify this to ensure it's in a safe environment for publishing
+
+    steps:
+      - name: Retrieve release distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dists
+          path: dist/
+
+      - name: Publish release distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}  # Make sure the secret is set correctly
